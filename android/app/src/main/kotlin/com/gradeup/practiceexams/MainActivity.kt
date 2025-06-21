@@ -1,4 +1,5 @@
-package com.sankranthivinod.grade_up
+package com.gradeup.practiceexams
+
 
 import io.flutter.embedding.android.FlutterActivity
 
