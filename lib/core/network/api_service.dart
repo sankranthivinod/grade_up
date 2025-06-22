@@ -10,7 +10,7 @@ class ApiService {
     return await dio.post('students/register', data: userData);
   }
 
-  /// Login user by email (GET with query param)
+  /// Login user by email
   Future<Response> loginUser(String email) async {
     return await dio.get(
       'students/get-by-email',

@@ -5,15 +5,17 @@ import 'auth_interceptor.dart';
 class DioProvider {
   static Dio createDio() {
     final dio = Dio(BaseOptions(
-      baseUrl: 'https://yourapi.com/api/',
+      baseUrl:
+      'https://apdjq7fpontm374bg3p2w3gx3m0hcbwy.lambda-url.us-east-1.on.aws',
       connectTimeout: const Duration(seconds: 10),
       receiveTimeout: const Duration(seconds: 10),
       contentType: 'application/json',
     ));
 
-    // Interceptors
-    dio.interceptors.add(LogInterceptor(responseBody: true));
-    dio.interceptors.add(AuthInterceptor(const FlutterSecureStorage()));
+    dio.interceptors.addAll([
+      LogInterceptor(responseBody: true),
+      AuthInterceptor(),
+    ]);
 
     return dio;
   }

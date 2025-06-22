@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:practiceexams/core/resources/dimens.dart';
 import 'package:practiceexams/core/resources/string_resources.dart';
-
-import '../../bloc/registration_bloc.dart';
-import '../../bloc/registration_event.dart';
-import '../../bloc/registration_state.dart';
-import '../../repository/registration_repository.dart';
-
+import 'package:practiceexams/feature/registration/domain/repositories/registration_repository_impl.dart';
+import 'package:practiceexams/feature/registration/presentation/bloc/registration_bloc.dart';
+import 'package:practiceexams/feature/registration/presentation/bloc/registration_event.dart';
+import 'package:practiceexams/feature/registration/presentation/bloc/registration_state.dart';
 
 class RegistrationScreen extends StatelessWidget {
   const RegistrationScreen({super.key});
@@ -15,7 +13,7 @@ class RegistrationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => RegisterBloc(registrationRepository: RegistrationRepository()),
+      create: (_) => RegisterBloc(registrationRepository: RegistrationRepositoryImpl()),
       child: const _RegisterForm(),
     );
   }

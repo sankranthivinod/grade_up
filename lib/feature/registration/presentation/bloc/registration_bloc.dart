@@ -1,9 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:practiceexams/feature/registration/bloc/registration_event.dart';
-import 'package:practiceexams/feature/registration/bloc/registration_state.dart';
+import 'package:practiceexams/feature/registration/domain/repositories/registration_repository_impl.dart';
+import 'package:practiceexams/feature/registration/presentation/bloc/registration_event.dart';
+import 'package:practiceexams/feature/registration/presentation/bloc/registration_state.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
-  final RegistrationRepository registrationRepository;
+  final RegistrationRepositoryImpl registrationRepository;
 
   RegisterBloc({required this.registrationRepository}) : super(const RegisterState()) {
     on<NameChanged>((event, emit) {
