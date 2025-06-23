@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:practiceexams/feature/dashboard/screens/dashboard_screen.dart';
+import 'package:practiceexams/feature/dashboard/presentation/screens/dashboard_screen.dart';
 import 'package:practiceexams/feature/login/presentation/screens/login_screen.dart';
 import 'package:practiceexams/feature/registration/presentation/screens/registration_screen.dart';
 

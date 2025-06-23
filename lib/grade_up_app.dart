@@ -8,6 +8,7 @@ class GradeUpApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: StringRes.appTitle,
       theme: lightTheme,
       darkTheme: darkTheme,

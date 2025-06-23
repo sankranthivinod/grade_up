@@ -34,6 +34,6 @@ class _AppBootstrapper extends StatelessWidget {
   Future<void> _initializeApp() async {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
-    setupDependencies();
+    await setupDependencies();
   }
 }

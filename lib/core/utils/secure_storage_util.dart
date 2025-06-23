@@ -3,10 +3,9 @@ import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
-@singleton
 class SecureStorageUtil {
   const SecureStorageUtil._();
+  static const _tokenKey = 'firebase_token';
 
   static final FlutterSecureStorage _storage = FlutterSecureStorage(
     aOptions: AndroidOptions(
@@ -24,8 +23,9 @@ class SecureStorageUtil {
     await _storage.write(key: key, value: value);
   }
 
-  static T? read<T>(String key) {
-    _storage.read(key: key);
+
+  static Future<T?> read<T>(String key) async{
+   await _storage.read(key: key);
   }
 
   static Future<void> writeObject(
@@ -54,5 +54,18 @@ class SecureStorageUtil {
   static Future<Set<String>> readAllKey() async {
     final Map<String, String> allValues = await _storage.readAll();
     return allValues.keys.toSet();
+  }
+
+
+  static Future<void> saveToken(String token) async {
+    await _storage.write(key: _tokenKey, value: token);
+  }
+
+  static Future<String?> readToken() async {
+    return await _storage.read(key: _tokenKey);
+  }
+
+  static Future<void> deleteToken() async {
+    await _storage.delete(key: _tokenKey);
   }
 }

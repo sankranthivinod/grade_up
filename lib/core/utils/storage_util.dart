@@ -3,8 +3,6 @@
 import 'package:get_storage/get_storage.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
-@singleton
 class StorageUtil{
   const StorageUtil._();
   static final GetStorage _storage = GetStorage();
