@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:practiceexams/core/resources/dimens.dart';
 import 'package:practiceexams/core/resources/string_resources.dart';
 import 'package:practiceexams/feature/registration/domain/repositories/registration_repository_impl.dart';
 import 'package:practiceexams/feature/registration/presentation/bloc/registration_bloc.dart';
 import 'package:practiceexams/feature/registration/presentation/bloc/registration_event.dart';
 import 'package:practiceexams/feature/registration/presentation/bloc/registration_state.dart';
+import 'package:practiceexams/routing/routes.dart';
 
 class RegistrationScreen extends StatelessWidget {
   const RegistrationScreen({super.key});
@@ -106,7 +108,7 @@ class _RegisterForm extends StatelessWidget {
                   children: [
                     const Text(StringRes.alreadyHaveAccount),
                     GestureDetector(
-                      onTap: () => Navigator.pushNamed(context, '/login'),
+                      onTap: () => context.go(BaseRoutes.login),
                       child: Text(
                         StringRes.signIn,
                         style: TextStyle(color: colorScheme.secondary),

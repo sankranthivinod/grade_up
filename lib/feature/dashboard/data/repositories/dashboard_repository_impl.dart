@@ -1,8 +1,11 @@
+import 'package:injectable/injectable.dart';
+
 import '../../domain/entities/quiz_list_entity.dart';
 import '../../domain/repositories/dashboard_repository.dart';
 import '../datasources/dashboard_remote_data_source.dart';
 import '../models/quiz_list_model.dart';
 
+@Injectable(as: DashboardRepository)
 class DashboardRepositoryImpl implements DashboardRepository {
   final DashboardRemoteDataSource remoteDataSource;
 

@@ -35,10 +35,6 @@ abstract class AppModule {
       LoginRemoteDataSource(dio);
 
   @lazySingleton
-  LoginRepositoryImpl provideLoginRepository(LoginRemoteDataSource remote) =>
-      LoginRepositoryImpl(remote);
-
-  @lazySingleton
   UserDao provideUserDao(Database db) => UserDao(db);
 
   @preResolve

@@ -15,10 +15,10 @@ import 'login_state.dart';
 
 @injectable
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  final LoginRepository loginRepository;
-  final UserDao userDao;
+  final LoginRepository loginRepository = getIt<LoginRepository>();
+  final UserDao userDao = getIt<UserDao>();
 
-  LoginBloc(this.loginRepository, this.userDao) : super(const LoginState()) {
+  LoginBloc() : super(const LoginState()) {
     on<LoginEmailChanged>((event, emit) {
       emit(state.copyWith(email: event.email));
     });

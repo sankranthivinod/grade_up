@@ -6,7 +6,7 @@ import 'package:practiceexams/feature/login/data/datasources/login_remote_data_s
 import 'package:practiceexams/feature/login/data/models/user_model.dart';
 import 'package:practiceexams/feature/login/data/repositories/login_repository.dart';
 import 'package:practiceexams/feature/login/domain/entities/user_entity.dart';
-
+@LazySingleton(as: LoginRepository)
 class LoginRepositoryImpl  extends LoginRepository{
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   LoginRemoteDataSource remoteDataSource;

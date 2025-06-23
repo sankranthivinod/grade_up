@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/di/dependency_configuration.dart';
+import 'feature/login/presentation/bloc/login_bloc.dart';
 import 'grade_up_app.dart';
 
-void main() {
+Future<void> main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await setupDependencies();
+  await Future.delayed(const Duration(seconds: 3));
   runApp(const _AppBootstrapper());
 }
 
@@ -25,15 +32,16 @@ class _AppBootstrapper extends StatelessWidget {
             home: Scaffold(body: Center(child: Text('Error: ${snapshot.error}'))),
           );
         } else {
-          return const GradeUpApp();
-        }
+          return BlocProvider<LoginBloc>.value(
+            value: getIt<LoginBloc>(),
+            child: const GradeUpApp(),
+          );        }
       },
     );
   }
 
   Future<void> _initializeApp() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp();
-    await setupDependencies();
+    // await Firebase.initializeApp();
+    // await setupDependencies();
   }
 }
