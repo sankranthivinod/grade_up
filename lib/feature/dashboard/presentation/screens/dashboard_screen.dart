@@ -116,6 +116,7 @@ class DashboardScreen extends StatelessWidget {
                             ? () {
                           // TODO: Navigate to exam screen
                           // context.go('/exam/$selectedQuiz');
+
                         }
                             : null,
                         style: ElevatedButton.styleFrom(

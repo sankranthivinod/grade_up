@@ -1,5 +1,5 @@
+import 'package:practiceexams/feature/dashboard/data/repositories/dashboard_repository.dart';
 import '../entities/quiz_list_entity.dart';
-import '../repositories/dashboard_repository.dart';
 
 class FetchQuizzesUseCase {
   final DashboardRepository repository;

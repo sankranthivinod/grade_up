@@ -16,4 +16,15 @@ class DashboardRemoteDataSource {
     );
     return response.data;
   }
+
+ Future<Map<String, dynamic>>fetchQuizByName(String quizName, String email) async {
+
+    final response = await dio.get(
+      'quiz/$quizName',
+      queryParameters: {
+        'email': email,
+      },
+    );
+    return  response.data;
+  }
 }

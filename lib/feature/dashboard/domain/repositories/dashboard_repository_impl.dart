@@ -1,9 +1,10 @@
 import 'package:injectable/injectable.dart';
+import 'package:practiceexams/feature/dashboard/data/datasources/dashboard_remote_data_source.dart';
+import 'package:practiceexams/feature/dashboard/data/models/quiz_list_model.dart';
+import 'package:practiceexams/feature/dashboard/data/repositories/dashboard_repository.dart';
+import 'package:practiceexams/feature/exam/data/models/quiz_model.dart';
 
 import '../../domain/entities/quiz_list_entity.dart';
-import '../../domain/repositories/dashboard_repository.dart';
-import '../datasources/dashboard_remote_data_source.dart';
-import '../models/quiz_list_model.dart';
 
 @Injectable(as: DashboardRepository)
 class DashboardRepositoryImpl implements DashboardRepository {

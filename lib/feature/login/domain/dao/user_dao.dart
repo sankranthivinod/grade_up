@@ -17,4 +17,8 @@ class UserDao {
     final result = await db.query('users');
     return result.map((e) => UserModel.fromJson(e)).toList();
   }
+  Future<int> deleteUsers() async {
+    return await db.delete('users'); // Deletes all users
+  }
 }
+

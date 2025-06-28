@@ -35,8 +35,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           email: state.email,
           password: state.password,
         );
-
-        await userDao.insertUser(user);
+        final list  = await userDao.getUsers();
+        if(list.isEmpty){
+          // await userDao.deleteUsers();
+          await userDao.insertUser(user);
+        }
 
         emit(state.copyWith(isSubmitting: false, isSuccess: true));
       } catch (e) {
