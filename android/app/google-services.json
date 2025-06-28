@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1098307157317",
+    "project_id": "gothinkerstech",
+    "storage_bucket": "gothinkerstech.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098307157317:android:345aa386a65888ce04d22c",
+        "android_client_info": {
+          "package_name": "com.gradeup.practiceexams"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDACGyJ_lSKRLznhTdxQz7ySBpWgIvyFJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
