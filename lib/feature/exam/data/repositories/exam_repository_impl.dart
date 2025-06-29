@@ -1,16 +1,25 @@
-import 'package:practiceexams/feature/exam/data/datasources/exam_remote_data_source.dart';
-import 'package:practiceexams/feature/exam/domain/entities/quiz_entity.dart';
-import 'package:practiceexams/feature/exam/domain/repositories/exam_repository.dart';
 import 'package:injectable/injectable.dart';
+import 'package:practiceexams/feature/exam/domain/dao/quiz_dao.dart';
+import '../../domain/entities/quiz_entity.dart';
+import '../../domain/repositories/exam_repository.dart';
+import '../datasources/exam_remote_data_source.dart';
 
-@Injectable(as: ExamRepository)
+@LazySingleton(as: ExamRepository)
 class ExamRepositoryImpl implements ExamRepository {
   final ExamRemoteDataSource remoteDataSource;
+  final QuizDao quizDao;
 
-  ExamRepositoryImpl(this.remoteDataSource);
+  ExamRepositoryImpl(this.remoteDataSource, this.quizDao);
 
   @override
-  Future<QuizEntity> fetchQuizByName(String email, String quizName) {
-    return remoteDataSource.fetchQuizByName(email, quizName);
+  Future<QuizEntity> fetchAndSaveExam(String email, String quizName) async {
+    final quiz = await remoteDataSource.fetchQuizByName(email, quizName);
+    await quizDao.insertQuizWithQuestions(quiz);
+    return quiz;
+  }
+
+  @override
+  Future<QuizEntity?> getLocalExam(String quizName) {
+    return quizDao.getQuizByName(quizName);
   }
 }

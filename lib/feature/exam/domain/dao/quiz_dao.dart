@@ -1,7 +1,8 @@
+import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:practiceexams/feature/exam/data/models/question_model.dart';
 import 'package:practiceexams/feature/exam/data/models/quiz_model.dart';
-
+@injectable
 class QuizDao {
   final Database db;
 
