@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:practiceexams/common/app_bar.dart';
 import 'package:practiceexams/core/di/dependency_configuration.dart';
 import 'package:practiceexams/core/resources/dimens.dart';
 import 'package:practiceexams/core/resources/string_resources.dart';
@@ -26,83 +27,119 @@ class LoginScreen extends StatelessWidget {
           context.go(BaseRoutes.dashboard);
         },
         child: Scaffold(
-          appBar: AppBar(title: Text(StringRes.login)),
-          body: Padding(
-            padding: const EdgeInsets.all(Dimens.dp16),
-            child: BlocBuilder<LoginBloc, LoginState>(
-              builder: (context, state) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    TextField(
-                      onChanged: (value) => context
-                          .read<LoginBloc>()
-                          .add(LoginEmailChanged(value)),
-                      decoration: InputDecoration(labelText: StringRes.email),
-                    ),
-                    const SizedBox(height: Dimens.dp14),
-                    TextField(
-                      obscureText: true,
-                      onChanged: (value) => context
-                          .read<LoginBloc>()
-                          .add(LoginPasswordChanged(value)),
-                      decoration:
-                      InputDecoration(labelText: StringRes.password),
-                    ),
-                    const SizedBox(height: Dimens.dp20),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                        onPressed: () {
-                          // TODO: Navigate to Forgot Password screen
-                        },
-                        style: TextButton.styleFrom(
-                          foregroundColor: colorScheme.secondary,
-                        ),
-                        child: Text(StringRes.forgotPassword),
-                      ),
-                    ),
-                    const SizedBox(height: Dimens.dp15),
-                    state.isSubmitting
-                        ? const Center(child: CircularProgressIndicator())
-                        : ElevatedButton(
-                      onPressed: () => context
-                          .read<LoginBloc>()
-                          .add(LoginSubmitted()),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: colorScheme.primary,
-                        foregroundColor: colorScheme.onPrimary,
-                      ),
-                      child: Text(StringRes.login),
-                    ),
-                    const SizedBox(height: Dimens.dp15),
-                    if (state.isSuccess)
+            appBar: const CustomAppBar(
+              title: 'Login',
+              showBack: false,
+              showHome: false,
+            ),
+          body: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(24),
+              child: BlocBuilder<LoginBloc, LoginState>(
+                builder: (context, state) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
                       Text(
-                        StringRes.loginSuccess,
-                        style: const TextStyle(color: Colors.green),
+                        "Welcome Back",
+                        style: Theme.of(context).textTheme.headlineSmall,
                         textAlign: TextAlign.center,
                       ),
-                    if (state.isFailure || state.errorMessage != null)
-                      Text(
-                        state.errorMessage ?? StringRes.loginFailed,
-                        style: const TextStyle(color: Colors.red),
-                        textAlign: TextAlign.center,
-                      ),
-                    const Spacer(),
-                    Center(
-                      child: TextButton(
-                        onPressed: () {
-                          context.go(BaseRoutes.registration);
-                        },
-                        style: TextButton.styleFrom(
-                          foregroundColor: colorScheme.secondary,
+                      const SizedBox(height: 24),
+
+                      // Email Field
+                      TextField(
+                        style: const TextStyle(fontSize: 16),
+                        onChanged: (value) =>
+                            context.read<LoginBloc>().add(LoginEmailChanged(value)),
+                        decoration: const InputDecoration(
+                          labelText: "Email",
+                          labelStyle: TextStyle(fontSize: 16),
+                          border: OutlineInputBorder(),
+                          contentPadding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 14),
                         ),
-                        child: Text(StringRes.registerLink),
                       ),
-                    ),
-                  ],
-                );
-              },
+                      const SizedBox(height: 16),
+
+                      // Password Field
+                      TextField(
+                        obscureText: true,
+                        style: const TextStyle(fontSize: 16),
+                        onChanged: (value) =>
+                            context.read<LoginBloc>().add(LoginPasswordChanged(value)),
+                        decoration: const InputDecoration(
+                          labelText: "Password",
+                          labelStyle: TextStyle(fontSize: 16),
+                          border: OutlineInputBorder(),
+                          contentPadding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+
+                      // Forgot Password
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          onPressed: () {
+                            // TODO: Navigate to forgot password
+                          },
+                          style: TextButton.styleFrom(
+                            foregroundColor: colorScheme.secondary,
+                          ),
+                          child: const Text("Forgot Password?"),
+                        ),
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      // Login Button
+                      state.isSubmitting
+                          ? const Center(child: CircularProgressIndicator())
+                          : ElevatedButton(
+                        onPressed: () => context.read<LoginBloc>().add(LoginSubmitted()),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: colorScheme.primary,
+                          foregroundColor: colorScheme.onPrimary,
+                          padding: const EdgeInsets.symmetric(vertical: 14),
+                        ),
+                        child: const Text("Login"),
+                      ),
+                      const SizedBox(height: 12),
+
+                      // Login result
+                      if (state.isSuccess)
+                        const Text(
+                          "Login successful",
+                          style: TextStyle(color: Colors.green),
+                          textAlign: TextAlign.center,
+                        ),
+                      if (state.isFailure || state.errorMessage != null)
+                        Text(
+                          state.errorMessage ?? "Login failed",
+                          style: const TextStyle(color: Colors.red),
+                          textAlign: TextAlign.center,
+                        ),
+
+                      const SizedBox(height: 24),
+
+                      // Register Link
+                      Center(
+                        child: TextButton(
+                          onPressed: () {
+                            context.go(BaseRoutes.registration);
+                          },
+                          style: TextButton.styleFrom(
+                            foregroundColor: colorScheme.secondary,
+                          ),
+                          child: const Text("Don't have an account? Register"),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
           ),
         ),

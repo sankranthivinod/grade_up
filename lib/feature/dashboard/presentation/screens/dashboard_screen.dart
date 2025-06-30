@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:practiceexams/core/di/dependency_configuration.dart';
 import 'package:practiceexams/core/resources/constants.dart';
 import 'package:practiceexams/core/utils/secure_storage_util.dart';
@@ -115,7 +116,13 @@ class DashboardScreen extends StatelessWidget {
                         onPressed: selectedQuiz != null
                             ? () {
                           // TODO: Navigate to exam screen
-                          // context.go('/exam/$selectedQuiz');
+                          context.go(
+                            '/exam',
+                            extra: {
+                              'quizName': selectedQuiz!,
+                              'email': user.email!
+                            },
+                          );
 
                         }
                             : null,

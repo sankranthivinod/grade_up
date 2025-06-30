@@ -75,7 +75,7 @@ dev_dependencies:
   build_runner: ^2.4.15        # Runs the generator
   freezed: ^3.0.0-0.0.dev
   json_serializable: ^6.7.1
-
+  flutter_launcher_icons: ^0.14.4
 
 #  go_router:
 #  flutter_svg:
@@ -84,6 +84,12 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/gradeup_logo.png"  # your logo file
+  adaptive_icon_background: "#ffffff"      # only available for Android 8.0 devices and above
+  adaptive_icon_foreground: "assets/images/gradeup_logo.png" # only available for Android 8.0 devices and above
 flutter:
 
   uses-material-design: true
